@@ -50,9 +50,9 @@ fun PhtoneBookApp(modifier: Modifier = Modifier) {
         var phoneNumb by remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
         var isInputValid by remember { mutableStateOf(false) }
-        var inputEmail = ""
-        var inputPhone = ""
-        var inputName = ""
+        var inputEmail by remember { mutableStateOf("") }
+        var inputPhone by remember { mutableStateOf("") }
+        var inputName by remember { mutableStateOf("") }
         //save
         TextField(
             value = userName,
@@ -75,10 +75,15 @@ fun PhtoneBookApp(modifier: Modifier = Modifier) {
 
         Button(onClick = {
             if(isInputValid == false){
-                userName = userName
-                phoneNumb = phoneNumb
-                email = email
+                inputName = userName
+                inputPhone = phoneNumb
+                inputEmail = email
                 isInputValid = true
+            }else{
+                inputName = ""
+                inputPhone = ""
+                inputEmail = ""
+                isInputValid = false
             }
 
 
@@ -87,9 +92,9 @@ fun PhtoneBookApp(modifier: Modifier = Modifier) {
             Text("Save")
         }//save
         Spacer(modifier = Modifier.height(16.dp))
-        Text("User Name: $userName")
-        Text("Phone Number: $phoneNumb")
-        Text("Email: $email")
+        Text("User Name: $inputName")
+        Text("Phone Number: $inputPhone")
+        Text("Email: $inputEmail")
     }
 }
 
