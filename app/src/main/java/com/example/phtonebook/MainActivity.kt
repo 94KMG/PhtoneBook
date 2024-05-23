@@ -20,8 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.room.Room
+import com.example.phtonebook.ui.theme.AppDatabase
 import com.example.phtonebook.ui.theme.PhtoneBookTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,6 +42,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PhtoneBookApp(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    val db = remember {
+        Room.databaseBuilder(
+            context,
+            AppDatabase::class.java, "contact.db"
+        ).build()
+    }
+//    val list = db.userDao().getAll()
+
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
@@ -74,17 +86,19 @@ fun PhtoneBookApp(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = {
-            if(isInputValid == false){
+//            if(isInputValid == false){
                 inputName = userName
                 inputPhone = phoneNumb
                 inputEmail = email
-                isInputValid = true
-            }else{
-                inputName = ""
-                inputPhone = ""
-                inputEmail = ""
-                isInputValid = false
-            }
+
+//                isInputValid = true
+
+//            }else{
+//                inputName = ""
+//                inputPhone = ""
+//                inputEmail = ""
+//                isInputValid = false
+//            }
 
 
 
